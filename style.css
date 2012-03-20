@@ -25,10 +25,14 @@ div {
 	height: 100px;
 	width: 100px;
 	background:hsl(0,0%,85%);
-	color:white;
 	line-height:100px;
-	text-align:center;
+}
+
+h1,h2,h3,div {
 	font-family: "futura-pt",Helvetica;
 	font-weight:700;
+	text-transform:uppercase;
+	text-align:center;
 	text-rendering:optimiseLegibility;
+	color: #fff;
 }
