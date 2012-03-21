@@ -22,11 +22,31 @@ var initColors = function(){
 
 var paletteIt = function(){
 	colors = {};
-	for (var i = 0; i <= 10; i++) {
-		var randomCol = Math.random() * 360;
+	for (var i = 0; i <= 8; i++) {
+		var randomCol = Math.round(Math.random() * 360);
+		var colPos = (randomCol/360) * ($('ul li').width()-100);
+		console.log(colPos);
+		$('#palette').append("<div id='"+randomCol+"'></div>")
+		$('#'+randomCol).attr('data-pos',colPos);
+		hslify($('#'+randomCol),randomCol);
 		colors[i] = randomCol;
 	};
-	console.log(colors);
+	// console.log(colors);
+
+	$('ul li').on('click','div', function(e){
+		cousins = $(this).parent().siblings().children('div');
+		cousins.animate({opacity:0}, 200);
+		var active = $(this);
+		$('#palette').on('click', 'div', function(e){
+			// $(this).attr('id');
+			var newcol = $(this).attr('id');
+			var newpos = $(this).attr('data-pos');
+			hslify(active,newcol);
+			active.animate({left:newpos});
+			cousins.animate({opacity:1}, 200);
+		});
+		//TODO: fix jankiness!;
+	});
 }
 
 
@@ -57,34 +77,24 @@ var changeCol = function(h) {
 	hh = Math.round(h*360);
 	hhh = Math.min(Math.max(0,hh),360);
 	hslify($('#frame'),hhh);
-	// sv = ", 50%, 50%";
-	// // console.log(hhh+sv);
-	// $('body').css({
-	// 	background:"hsl("+hhh+sv+")"
-	// });
 }
 
 var backToNormal = function(element,hue) {
 	hslify($('#frame'),0,0,20);
-	// $('body').css({
-	// 	background:"hsl(0,0%,85%)"
-	// });
-	// element.css({
-	// 	background:"hsl("+hhh+sv+")"
-	// });
 	hslify(element,hue);
 }
 
 $(document).ready(function() {
 	initColors();
 	paletteIt(); 
+
 	$('ul li div').draggable({
-		// axis:'x',
+		axis:'x',
 		containment:'parent',
-		// cursorAt: {
-		// 	left:0,
-		// 	top:0
-		// },
+		cursorAt: {
+			left:0,
+			top:0
+		},
 		// grid: [10,0],
 		start: function(e,ui) {
 			$(this).css({background: '#fff'});
@@ -103,7 +113,13 @@ $(document).ready(function() {
 			backToNormal(el,hhh);			
 			cousins = $(this).parent().siblings().children('div');
 			cousins.animate({opacity:1}, 200);
-			pos = ui.position.left;
+			pos == ui.position.left;
+			console.log(pos);
+			// Todo: fix out of bounds
+			// if (pos < 0) {
+			// 	console.log('too far left!');
+			// };
+			// if
 			var elid = el.attr('id');
 			store[elid] = pos;
 		},
