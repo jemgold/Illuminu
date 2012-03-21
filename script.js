@@ -56,7 +56,7 @@ var hslify = function(el,h,s,l){
 var changeCol = function(h) {
 	hh = Math.round(h*360);
 	hhh = Math.min(Math.max(0,hh),360);
-	hslify($('ul'),hhh);
+	hslify($('#frame'),hhh);
 	// sv = ", 50%, 50%";
 	// // console.log(hhh+sv);
 	// $('body').css({
@@ -65,7 +65,7 @@ var changeCol = function(h) {
 }
 
 var backToNormal = function(element,hue) {
-	hslify($('ul'),0,0,20);
+	hslify($('#frame'),0,0,20);
 	// $('body').css({
 	// 	background:"hsl(0,0%,85%)"
 	// });
@@ -79,12 +79,12 @@ $(document).ready(function() {
 	initColors();
 	paletteIt(); 
 	$('ul li div').draggable({
-		axis:'x',
+		// axis:'x',
 		containment:'parent',
-		cursorAt: {
-			left:0,
-			top:0
-		},
+		// cursorAt: {
+		// 	left:0,
+		// 	top:0
+		// },
 		// grid: [10,0],
 		start: function(e,ui) {
 			$(this).css({background: '#fff'});
