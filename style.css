@@ -26,6 +26,7 @@ div {
 	width: 100px;
 	background:hsl(0,0%,85%);
 	line-height:100px;
+	border-radius:50px;
 }
 
 h1,h2,h3,div {
