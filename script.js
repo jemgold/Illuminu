@@ -1,3 +1,25 @@
+var store = window.localStorage;
+
+var initColors = function(){
+	$('ul li').each(function(i){
+		me = $(this).children('div');
+		myid = me.attr('id');
+		if (store[myid] == null) {
+			// alert('null!');
+			// console.log(store[myid]);
+			hslify(me,0);			
+		} else{
+			var pos = store[myid];
+			parent = $(this).width();
+			h = pos/parent;
+			hh = Math.round(h*360);
+			hhh = Math.min(Math.max(0,hh),360);
+			backToNormal(me,hhh);
+			me.css({left:pos});
+		};
+	});
+}
+
 
 var hslify = function(el,h,s,l){
 	// console.log(h,s,l);
@@ -16,7 +38,7 @@ var hslify = function(el,h,s,l){
 
 	hsl = h+","+s+"%,"+l+"%";
 	chsl = "hsl("+hsl+")";
-	// console.log(hsl);
+	// console.log(chsl);
 	el.css({
 		background:chsl
 	});
@@ -33,7 +55,7 @@ var changeCol = function(h) {
 	// });
 }
 
-var backToNormal = function(element) {
+var backToNormal = function(element,hue) {
 	hslify($('ul'),0,0,20);
 	// $('body').css({
 	// 	background:"hsl(0,0%,85%)"
@@ -41,10 +63,11 @@ var backToNormal = function(element) {
 	// element.css({
 	// 	background:"hsl("+hhh+sv+")"
 	// });
-	hslify(element,hhh);
+	hslify(element,hue);
 }
 
 $(document).ready(function() {
+	initColors();
 	$('ul li div').draggable({
 		axis:'x',
 		containment:'parent',
@@ -67,9 +90,12 @@ $(document).ready(function() {
 		},
 		stop: function(e,ui){
 			var el = $(this);
-			backToNormal(el);
+			backToNormal(el,hhh);			
 			cousins = $(this).parent().siblings().children('div');
 			cousins.animate({opacity:1}, 200);
+			pos = ui.position.left;
+			var elid = el.attr('id');
+			store[elid] = pos;
 		},
 	});
 });
