@@ -20,6 +20,15 @@ var initColors = function(){
 	});
 }
 
+var paletteIt = function(){
+	colors = {};
+	for (var i = 0; i <= 10; i++) {
+		var randomCol = Math.random() * 360;
+		colors[i] = randomCol;
+	};
+	console.log(colors);
+}
+
 
 var hslify = function(el,h,s,l){
 	// console.log(h,s,l);
@@ -68,6 +77,7 @@ var backToNormal = function(element,hue) {
 
 $(document).ready(function() {
 	initColors();
+	paletteIt(); 
 	$('ul li div').draggable({
 		axis:'x',
 		containment:'parent',
