@@ -80,7 +80,7 @@ var changeCol = function(h) {
 }
 
 var backToNormal = function(element,hue) {
-	hslify($('#frame'),0,0,20);
+	hslify($('#frame'),0,0,0);
 	hslify(element,hue);
 }
 

@@ -7,8 +7,8 @@ body {
 	height:480px;	
 	overflow: auto;
 	margin:40px auto;
-	padding:20px;
-	background:hsl(0,0%,20%);
+	padding:10px;
+	background:hsl(0,30%,20%);
 	position:relative;
 	box-sizing:border-box;
 	/*border: 1px solid hsl(0,0%,10%);*/
@@ -21,8 +21,10 @@ ul {
 	width:100%;
 }
 
+/* Rounded*/
+/*
 li {
-	width:280px;
+	width:300px;
 	margin-bottom:20px;
 }
 
@@ -37,6 +39,26 @@ ul > li > div {
 
 ul > li > div h3 {
 	line-height:100px;
+	margin:0;
+}
+*/
+
+/* Square*/
+li {
+	width:300px;
+	margin-bottom:4px;
+	background:hsl(0,0%,10%);
+}
+ul > li > div {
+	height: 64px;
+	width: 100px;
+	background:hsl(0,0%,85%);
+	line-height:64px;
+	display:inline-block;
+}
+
+ul > li > div h3 {
+	line-height:64px;
 	margin:0;
 }
 
