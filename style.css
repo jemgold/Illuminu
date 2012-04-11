@@ -47,7 +47,7 @@ ul > li > div h3 {
 li {
 	width:300px;
 	margin-bottom:4px;
-	background:hsl(0,0%,10%);
+	/*background:hsl(0,0%,10%);*/
 }
 ul > li > div {
 	height: 64px;
